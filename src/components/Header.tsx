@@ -1,177 +1,89 @@
-import { Link } from '@tanstack/react-router'
+import { useState, useEffect } from "react"
+import HeaderButton from "./HeaderButton"
+import Dropdown from "./Dropdown"
+import { useNavigate } from "@tanstack/react-router"
 
-import { useState } from 'react'
-import {
-  ChevronDown,
-  ChevronRight,
-  Home,
-  Menu,
-  Network,
-  SquareFunction,
-  StickyNote,
-  X,
-} from 'lucide-react'
+const Header = () => {
+    const [isScrolled, setIsScrolled] = useState(false)
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const navigate = useNavigate()
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20)
+        }
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [groupedExpanded, setGroupedExpanded] = useState<
-    Record<string, boolean>
-  >({})
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
 
-  return (
-    <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
-            <img
-              src="/tanstack-word-logo-white.svg"
-              alt="TanStack Logo"
-              className="h-10"
-            />
-          </Link>
-        </h1>
-      </header>
+    return (
+        <>
+            <div className="w-full flex justify-center fixed top-0 left-0 right-0 z-50">
+                <div className={`w-[820px] max-mobile:w-full max-mobile:rounded-none rounded-full px-12 max-mobile:px-8 flex flex-row justify-between items-center h-16 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md mt-2" : "mt-0"} max-mobile:mt-0`}>
+                    <img src="/images/logo.png" alt="Logo" className="h-8 cursor-pointer" onClick={() => navigate({ to: '/' })} />
 
-      <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">Navigation</h2>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-        </div>
+                    {/* Desktop menu */}
+                    <div className="flex flex-row gap-6 max-mobile:hidden items-center">
+                        <HeaderButton onClick={() => navigate({ to: '/' })}>Home</HeaderButton>
+                        <Dropdown
+                            trigger={<HeaderButton showArrow>Services</HeaderButton>}
+                            items={[
+                                { label: 'Holistic Body Transformation', href: '/services/holistic-body-transformation' },
+                                { label: 'Post-Pregnancy Transformation', href: '/services/post-pregnancy-transformation' }
+                            ]}
+                        />
+                        <HeaderButton onClick={() => navigate({ to: '/mystory' })}>About</HeaderButton>
+                        <HeaderButton>Vlog</HeaderButton>
+                        <HeaderButton
+                            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+                        >
+                            Contact
+                        </HeaderButton>
+                        <HeaderButton showArrow>Language</HeaderButton>
+                    </div>
 
-        <nav className="flex-1 p-4 overflow-y-auto">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Home size={20} />
-            <span className="font-medium">Home</span>
-          </Link>
-
-          {/* Demo Links Start */}
-
-          <Link
-            to="/demo/start/server-funcs"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <SquareFunction size={20} />
-            <span className="font-medium">Start - Server Functions</span>
-          </Link>
-
-          <Link
-            to="/demo/start/api-request"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Network size={20} />
-            <span className="font-medium">Start - API Request</span>
-          </Link>
-
-          <div className="flex flex-row justify-between">
-            <Link
-              to="/demo/start/ssr"
-              onClick={() => setIsOpen(false)}
-              className="flex-1 flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-              activeProps={{
-                className:
-                  'flex-1 flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-              }}
-            >
-              <StickyNote size={20} />
-              <span className="font-medium">Start - SSR Demos</span>
-            </Link>
-            <button
-              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-              onClick={() =>
-                setGroupedExpanded((prev) => ({
-                  ...prev,
-                  StartSSRDemo: !prev.StartSSRDemo,
-                }))
-              }
-            >
-              {groupedExpanded.StartSSRDemo ? (
-                <ChevronDown size={20} />
-              ) : (
-                <ChevronRight size={20} />
-              )}
-            </button>
-          </div>
-          {groupedExpanded.StartSSRDemo && (
-            <div className="flex flex-col ml-4">
-              <Link
-                to="/demo/start/ssr/spa-mode"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-                activeProps={{
-                  className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                }}
-              >
-                <StickyNote size={20} />
-                <span className="font-medium">SPA Mode</span>
-              </Link>
-
-              <Link
-                to="/demo/start/ssr/full-ssr"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-                activeProps={{
-                  className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                }}
-              >
-                <StickyNote size={20} />
-                <span className="font-medium">Full SSR</span>
-              </Link>
-
-              <Link
-                to="/demo/start/ssr/data-only"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-                activeProps={{
-                  className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                }}
-              >
-                <StickyNote size={20} />
-                <span className="font-medium">Data Only</span>
-              </Link>
+                    {/* Mobile burger button */}
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="hidden max-mobile:flex flex-col gap-1.5 w-10 h-10 justify-center items-center rounded-full hover:bg-gray-200 transition-colors duration-200"
+                        aria-label="Toggle menu"
+                    >
+                        <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                        <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                        <span className={`w-6 h-0.5 bg-primary transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                    </button>
+                </div>
             </div>
-          )}
 
-          {/* Demo Links End */}
-        </nav>
-      </aside>
-    </>
-  )
+            {/* Mobile side panel */}
+            <div className={`fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-40 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} hidden max-mobile:block`}>
+                <div className="flex flex-col gap-4 pt-24 px-6">
+                    <HeaderButton
+                        onClick={() => navigate({ to: '/' })}
+                    >Home</HeaderButton>
+                    <Dropdown
+                        trigger={<HeaderButton showArrow>Services</HeaderButton>}
+                        items={[
+                            { label: 'Holistic Body Transformation', href: '/services/holistic-body-transformation' },
+                            { label: 'Post-Pregnancy Transformation', href: '/services/post-pregnancy-transformation' }
+                        ]}
+                    />
+                    <HeaderButton>About</HeaderButton>
+                    <HeaderButton>Vlog</HeaderButton>
+                    <HeaderButton>Contact</HeaderButton>
+                    <HeaderButton showArrow>Language</HeaderButton>
+                </div>
+            </div>
+
+            {/* Overlay */}
+            {isMobileMenuOpen && (
+                <div
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="fixed inset-0 bg-black/50 z-30 hidden max-mobile:block"
+                />
+            )}
+        </>
+    )
 }
+
+export default Header 

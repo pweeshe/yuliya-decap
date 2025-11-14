@@ -10,6 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MystoryIndexRouteImport } from './routes/mystory/index'
+import { Route as ServicesPostPregnancyTransformationRouteImport } from './routes/services/post-pregnancy-transformation'
+import { Route as ServicesHolisticBodyTransformationRouteImport } from './routes/services/holistic-body-transformation'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
@@ -23,6 +26,23 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MystoryIndexRoute = MystoryIndexRouteImport.update({
+  id: '/mystory/',
+  path: '/mystory/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesPostPregnancyTransformationRoute =
+  ServicesPostPregnancyTransformationRouteImport.update({
+    id: '/services/post-pregnancy-transformation',
+    path: '/services/post-pregnancy-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesHolisticBodyTransformationRoute =
+  ServicesHolisticBodyTransformationRouteImport.update({
+    id: '/services/holistic-body-transformation',
+    path: '/services/holistic-body-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
   id: '/demo/start/server-funcs',
   path: '/demo/start/server-funcs',
@@ -61,6 +81,9 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/services/holistic-body-transformation': typeof ServicesHolisticBodyTransformationRoute
+  '/services/post-pregnancy-transformation': typeof ServicesPostPregnancyTransformationRoute
+  '/mystory': typeof MystoryIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -71,6 +94,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/services/holistic-body-transformation': typeof ServicesHolisticBodyTransformationRoute
+  '/services/post-pregnancy-transformation': typeof ServicesPostPregnancyTransformationRoute
+  '/mystory': typeof MystoryIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -82,6 +108,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/services/holistic-body-transformation': typeof ServicesHolisticBodyTransformationRoute
+  '/services/post-pregnancy-transformation': typeof ServicesPostPregnancyTransformationRoute
+  '/mystory/': typeof MystoryIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -94,6 +123,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/services/holistic-body-transformation'
+    | '/services/post-pregnancy-transformation'
+    | '/mystory'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -104,6 +136,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/services/holistic-body-transformation'
+    | '/services/post-pregnancy-transformation'
+    | '/mystory'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -114,6 +149,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/services/holistic-body-transformation'
+    | '/services/post-pregnancy-transformation'
+    | '/mystory/'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -125,6 +163,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ServicesHolisticBodyTransformationRoute: typeof ServicesHolisticBodyTransformationRoute
+  ServicesPostPregnancyTransformationRoute: typeof ServicesPostPregnancyTransformationRoute
+  MystoryIndexRoute: typeof MystoryIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
@@ -141,6 +182,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mystory/': {
+      id: '/mystory/'
+      path: '/mystory'
+      fullPath: '/mystory'
+      preLoaderRoute: typeof MystoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/post-pregnancy-transformation': {
+      id: '/services/post-pregnancy-transformation'
+      path: '/services/post-pregnancy-transformation'
+      fullPath: '/services/post-pregnancy-transformation'
+      preLoaderRoute: typeof ServicesPostPregnancyTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/holistic-body-transformation': {
+      id: '/services/holistic-body-transformation'
+      path: '/services/holistic-body-transformation'
+      fullPath: '/services/holistic-body-transformation'
+      preLoaderRoute: typeof ServicesHolisticBodyTransformationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/start/server-funcs': {
@@ -197,6 +259,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ServicesHolisticBodyTransformationRoute:
+    ServicesHolisticBodyTransformationRoute,
+  ServicesPostPregnancyTransformationRoute:
+    ServicesPostPregnancyTransformationRoute,
+  MystoryIndexRoute: MystoryIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,

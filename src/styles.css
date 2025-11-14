@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @theme {
   --color-primary: #7851a9;
   --color-secondary: #efbf04;
@@ -6,9 +7,10 @@
   --breakpoint-tablet: 864px;
   --breakpoint-mobile: 700px;
 }
+
 body {
   @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,4 +20,76 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.hero-text-container {
+  container-type: size;
+}
+
+.hero-text-scaled {
+  font-size: 16cqh;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.hero-text-scaled-small {
+  font-size: 8cqh;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.hero-text-scaled-extra-small {
+  font-size: 6cqh;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.hero-text-scaled-small-description {
+  font-size: 3cqh;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.about-me-text-container {
+  container-type: size;
+}
+
+.about-me-text-scaled {
+  font-size: 12cqh;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.about-me-text-two-lines {
+  font-size: 6cqh;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
 }
