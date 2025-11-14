@@ -93,3 +93,19 @@ code {
 .animate-slide-in-right {
   animation: slideInRight 0.3s ease-out;
 }
+
+/* .mystory-content p {
+  @apply mb-4;
+}
+
+.mystory-content p:last-child {
+  @apply mb-0;
+}
+
+.mystory-content em {
+  @apply italic;
+}
+
+.mystory-content strong {
+  @apply font-semibold;
+} */

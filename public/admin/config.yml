@@ -6,6 +6,19 @@ media_folder: "public/images/uploads" # Media files will be stored in the repo u
 public_folder: "/images/uploads" # The src attribute for uploaded media will use this path
 
 collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "My Story"
+        name: "mystory"
+        file: "content/mystory.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Second Section Title", name: "secondTitle", widget: "string" }
+          - { label: "Bottom Image", name: "bottomImage", widget: "image" }
+          - { label: "Body", name: "body", widget: "markdown", hint: "Separate the 'My Story' and 'Why I Do This' sections with --- (three dashes on a new line)" }
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Blog" # Used in the UI
     folder: "_posts/blog" # The path to the folder where the documents are stored
