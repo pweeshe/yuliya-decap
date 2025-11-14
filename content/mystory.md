@@ -5,19 +5,35 @@ heroImage: /images/MyStory2.png
 secondTitle: Why I Do This
 bottomImage: /images/MyStory1.png
 ---
-
 I grew up as a happy child, deeply loved by my grandparents, who showed their affection in the most caring way they knew — with food. It was a beautiful time of warmth and comfort, but as a result, I became a heavy child who didn't enjoy movement and always ran last in P.E. classes.
 
 <br/>
 By the time I reached middle school, I began to feel the effects of that lifestyle: low energy, slow digestion, constant constipation, weight gain, and growing insecurity. I started using food not only for nourishment but as emotional comfort — a way to feel safe and loved like I did as a child. It felt like a cycle I couldn't escape.
+<br/>
 
 But one day, something inside me shifted. I was in middle school. I realized I wasn't happy with how I felt in my body and in my life. I started asking myself:
 
 *What can I change to feel balanced, strong, and alive again?*
 
+
+<br/>
+
+
 That question marked the beginning of my wellness journey — one that would turn into a lifelong path of learning, healing, and transformation.
 
+
+<br/>
+
+
+
+
 At first, I started running — even though I used to hate it. I started to run short distances with friends, and when they gave up, I kept going, just to see what might happen in a month. Slowly, I fell in love with the fresh morning air, quiet sunrises, and the peace of being alone with myself. My body began to change. My digestion improved. My energy grew. I started reaching little goals I never thought possible, because I disciplined myself.
+
+
+<br/>
+
+
+
 
 That's when I learned something life-changing:
 
@@ -41,7 +57,7 @@ I kept running, completed marathons and Spartan races, and eventually decided to
 
 Through this process, I became a certified Personal Trainer and Nutritionist, and built the knowledge to craft programs that supported not just aesthetics, but sustainable well-being.
 
----
+- - -
 
 I've lived through the struggle — from emotional eating and burnout to physical exhaustion and disconnection from my body. And I've also lived the transformation.
 
@@ -54,4 +70,3 @@ I know how it feels to rebuild.
 And I know how powerful it feels to rise.
 
 If you're ready to return to yourself, I'm here to walk that journey with you — with care, strength, and everything I've learned along the way.
-
